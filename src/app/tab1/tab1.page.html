@@ -1,17 +1,101 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
+    <ion-title>Beranda</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleSearch()">
+        <ion-icon [name]="isSearchVisible ? 'close' : 'search'" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
+      <ion-title size="large">Beranda</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <!-- FORM PENCARIAN (muncul jika isSearchVisible true) -->
+  <div *ngIf="isSearchVisible" class="search-container">
+    <ion-item>
+      <ion-input [(ngModel)]="searchQuery" placeholder="Cari berdasarkan nama..."></ion-input>
+      <ion-button fill="clear" (click)="applyFilter()">
+        <ion-icon name="search-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </div>
+
+  <!-- Filter Brand -->
+  <ion-accordion-group>
+    <ion-accordion value="filter">
+      <ion-item slot="header" color="light">
+        <ion-icon name="options-outline" slot="start"></ion-icon>
+        <ion-label>Sortir</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <!-- Filter Brand -->
+        <ion-item>
+          <ion-label>Sortir</ion-label>
+          <ion-select [(ngModel)]="selectedBrand">
+            <ion-select-option value="">Semua</ion-select-option>
+            <ion-select-option *ngFor="let brand of brands" [value]="brand">
+              {{ brand }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+  
+        <!-- Harga Min & Max -->
+        <ion-item>
+          <ion-label>Harga Minimum</ion-label>
+          <ion-input type="number" [(ngModel)]="minPrice" placeholder="Min Harga" min="0"></ion-input>
+        </ion-item>
+  
+        <ion-item>
+          <ion-label>Harga Maksimum</ion-label>
+          <ion-input type="number" [(ngModel)]="maxPrice" placeholder="Max Harga" max="10000000"></ion-input>
+        </ion-item>
+  
+        <!-- Urutkan Harga -->
+        <ion-item>
+          <ion-label>Urutkan Harga</ion-label>
+          <ion-select [(ngModel)]="sortOrder" placeholder="Pilih Urutan">
+            <ion-select-option value="asc">Termurah</ion-select-option>
+            <ion-select-option value="desc">Termahal</ion-select-option>
+          </ion-select>
+        </ion-item>
+  
+        <!-- Tombol Filter -->
+        <ion-button expand="block" color="primary" (click)="applyFilter()">Terapkan Filter</ion-button>
+        <ion-button expand="block" color="medium" (click)="resetFilter()">Reset Filter</ion-button>
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>  
+
+  <ion-grid>
+    <ion-row *ngIf="filteredItems.length === 0">
+      <ion-col size="12" class="ion-text-center">
+        <p class="empty-message">Hasil yang dicari tidak ada, Coba refresh.</p>
+      </ion-col>
+    </ion-row>
+    
+    <ion-row>
+      <ion-col size="6" size-md="4" *ngFor="let item of filteredItems" (click)="onItemClick(item)">
+        <ion-card [class.selected]="item === selectedItem">
+          <img [src]="item.image_path" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover;" />
+          <ion-card-header>
+            <ion-card-title>{{ item.name }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>{{ item.description }}</p>
+            <p><strong>Harga: </strong>Rp.{{ item.price }}</p>
+            <p><strong>Status: </strong>{{ item.status }}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>      
+    </ion-row>
+  </ion-grid>
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 </ion-content>

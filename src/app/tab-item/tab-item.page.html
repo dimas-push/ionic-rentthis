@@ -1,0 +1,45 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detail Produk</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+
+  <!-- Gambar Produk -->
+  <div class="image-container">
+    <img src="https://via.placeholder.com/300.png?text=Produk" alt="Produk" />
+  </div>
+
+  <!-- Info Produk -->
+  <div class="product-info">
+    <h2 class="product-title">Nama Produk Iseng</h2>
+    <p class="product-brand">Brand Iseng</p>
+
+    <ion-item lines="none">
+      <ion-label>Plat Nomor</ion-label>
+      <ion-note slot="end">B 1234 ABC</ion-note>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-label>Status</ion-label>
+      <ion-note slot="end" color="success">Tersedia</ion-note>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-label>Harga</ion-label>
+      <ion-note slot="end" color="danger">Rp 123.456</ion-note>
+    </ion-item>
+  </div>
+
+</ion-content>
+
+<!-- Tombol Sewa di Footer -->
+<ion-footer>
+  <ion-toolbar>
+    <ion-button color="primary" class="sewa-button">Sewa Sekarang</ion-button>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,19 @@
+ion-card.selected {
+  border: 2px solid #3880ff;
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform: scale(1.05);
+  will-change: transform, box-shadow; /* Memberitahu browser akan ada perubahan */
+}
+
+  .selected {
+    border: 2px solid #007bff; /* Warna biru untuk border */
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2); /* Menambahkan bayangan */
+  }
+
+  .empty-message {
+    font-size: 16px;
+    color: #999;
+    margin-top: 20px;
+  }  
+  

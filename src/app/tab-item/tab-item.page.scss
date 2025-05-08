@@ -1,0 +1,42 @@
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f2f2f2;
+    padding: 16px;
+  }
+  
+  .image-container img {
+    width: 100%;
+    max-width: 300px;
+    aspect-ratio: 1 / 1; // Untuk bentuk 1:1
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .product-info {
+    padding: 16px 0;
+  }
+  
+  .product-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .product-brand {
+    color: #888;
+    margin-bottom: 8px;
+  }
+
+  .sewa-button {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 400px;
+    z-index: 100;
+    border-radius: 12px;
+  }
+  
