@@ -1,57 +1,36 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button routerLink="/tabs/tab5">
-        <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-title>Daftar Akun</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content class="ion-padding">
+<ion-header> </ion-header>
+<ion-content fullscreen [scrollEvents]="true" scroll-y="true" class="ion-padding">
   <div class="register-container">
+    <div class="logo">
+      <img src="assets/img/logo.png" alt="RentThis Logo">
+    </div>
 
-    <ion-text color="primary">
-      <h2>Selamat Datang!</h2>
-    </ion-text>
-    <p>Silakan isi data untuk membuat akun baru</p>
+  <h2 class="register-title">Welcome!</h2>
+  <h2 class="paragraf">Please fill in your details to create a new account</h2>
 
-    <ion-item lines="inset">
-      <ion-label position="floating">Email</ion-label>
-      <ion-input type="email" [(ngModel)]="user.email" required></ion-input>
+    <div class="form-box">
+    <ion-item lines="none" class="input-item">
+      <ion-input type="email" [(ngModel)]="user.email" required label="Email" label-placement="floating" placeholder="Enter your email address"></ion-input>
     </ion-item>
 
-    <ion-item lines="inset">
-      <ion-label position="floating">Nama Lengkap</ion-label>
-      <ion-input type="text" [(ngModel)]="user.name" required></ion-input>
+    <ion-item lines="none" class="input-item">
+      <ion-input type="text" [(ngModel)]="user.name" required label="Full Name" label-placement="floating" placeholder="Enter your full name"></ion-input>
     </ion-item>
 
-    <ion-item lines="inset">
-      <ion-label position="floating">No Telepon</ion-label>
-      <ion-input type="tel" [(ngModel)]="user.phone_number" required></ion-input>
+    <ion-item lines="none" class="input-item">
+      <ion-input type="tel" [(ngModel)]="user.phone_number" required label="Phone Number" label-placement="floating" placeholder="Enter your phone number"></ion-input>
     </ion-item>
 
-    <ion-item lines="inset">
-      <ion-label position="floating">Password</ion-label>
-      <ion-input
-        [type]="showPassword ? 'text' : 'password'"
-        [(ngModel)]="user.password"
-        required>
-      </ion-input>
-      <ion-icon
-        slot="end"
-        [name]="showPassword ? 'eye-off' : 'eye'"
-        (click)="togglePasswordVisibility('password')">
-      </ion-icon>
+    <ion-item lines="none" class="input-item">
+      <ion-input [type]="showPassword ? 'text' : 'password'" [(ngModel)]="user.password" required label="Password" label-placement="floating" placeholder="Enter your password"> </ion-input>
+      <ion-icon slot="end" [name]="showPassword ? 'eye-off' : 'eye'" (click)="togglePasswordVisibility('password')"> </ion-icon>
     </ion-item>
     
-    <ion-item lines="inset">
-      <ion-label position="floating">Konfirmasi Password</ion-label>
+    <ion-item lines="none" class="input-item-password">
       <ion-input
         [type]="showPasswordConfirm ? 'text' : 'password'"
         [(ngModel)]="user.password_confirmation"
-        required>
+        required label="Confirm Password" label-placement="floating" placeholder="Re-enter your password">
       </ion-input>
       <ion-icon
         slot="end"
@@ -59,12 +38,12 @@
         (click)="togglePasswordVisibility('confirm')">
       </ion-icon>
     </ion-item>
-    
+    </div>
 
-    <ion-button expand="block" class="btn-register" color="primary" (click)="register()">Daftar</ion-button>
+    <ion-button expand="block" size="default" shape="round" class="btn-signup" color="primary" (click)="register()">Sign Up</ion-button>
 
-    <div class="login-link">
-      Sudah punya akun? <a routerLink="/login">Masuk</a>
+    <div class="register-link ion-text-center">
+      Already have account? <a routerLink="/tabs/tab-login" class="sign-in">Sign In</a>
     </div>
 
     <ion-text color="danger" *ngIf="errorMessage">

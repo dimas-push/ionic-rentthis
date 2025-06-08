@@ -9,10 +9,11 @@
   .image-container img {
     width: 100%;
     max-width: 300px;
-    aspect-ratio: 1 / 1; // Untuk bentuk 1:1
+    max-height: 300px; /* opsional */
     object-fit: cover;
     border-radius: 8px;
-  }
+    height: auto;
+  }  
   
   .product-info {
     padding: 16px 0;

@@ -1,31 +1,32 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/tabs/tab5"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Masuk</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-header> </ion-header>
 
-<ion-content class="ion-padding">
-  <ion-item lines="inset">
-    <ion-label position="floating">Email</ion-label>
-    <ion-input type="email" [(ngModel)]="loginData.email" required></ion-input>
-  </ion-item>
+<ion-content class="ion-padding login-content">
+  <div class="login-container">
+    <div class="logo">
+      <img src="assets/img/logo.png" alt="RentThis-Login" />
+    </div>
 
-  <ion-item lines="inset">
-    <ion-label position="floating">Password</ion-label>
-    <ion-input [type]="showPassword ? 'text' : 'password'" [(ngModel)]="loginData.password" required></ion-input>
-    <ion-icon
-      slot="end"
-      [name]="showPassword ? 'eye-off' : 'eye'"
-      (click)="togglePasswordVisibility()">
-    </ion-icon>
-  </ion-item>
+    <h2 class="login-title">Login to your Account</h2>
 
-  <ion-button expand="block" (click)="login()">Login</ion-button>
+    <div class="form-box">
+      <ion-item lines="none" class="input-item">
+        <ion-input
+          type="email" [(ngModel)]="loginData.email" label="Email" label-placement="floating" placeholder="Input your email"></ion-input>
+      </ion-item>
 
-  <div class="register-link ion-text-center">
-    Belum punya akun? <a routerLink="/tabs/tab-register">Daftar</a>
+      <ion-item lines="none" class="input-item">
+        <ion-input [type]="showPassword ? 'text' : 'password'" [(ngModel)]="loginData.password" label="Password" label-placement="floating" placeholder="Input your password"></ion-input>
+        <ion-icon slot="end" [name]="showPassword ? 'eye-off' : 'eye'" (click)="togglePasswordVisibility()"></ion-icon>
+      </ion-item>
+      <div class="forgot-password ion-text-right">
+        <a routerLink="/forgot-password">Forgot Password?</a>
+      </div>
+
+      <ion-button expand="block" size="default" shape="round" class="btn-login" (click)="login()">Login</ion-button>
+
+      <div class="login-link ion-text-center">
+        Don’t have an account? <a routerLink="/tabs/tab-register" class="sign-up">Sign Up</a>
+      </div>
+    </div>
   </div>
 </ion-content>

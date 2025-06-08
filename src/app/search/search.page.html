@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+
+    <ion-item lines="none" class="search-bar-custom">
+      <ion-input [(ngModel)]="searchQuery" placeholder="Toyota Avanza" (ionInput)="applySearch()" clearInput="false"
+        [style.color]="searchQuery ? '#3366ff' : '#000'"></ion-input>
+
+      <ion-icon slot="end" [name]="searchQuery ? 'close-outline' : 'search-outline'"
+        [style.color]="searchQuery ? 'red' : '#3366ff'" (click)="onIconClick()"></ion-icon>
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-item *ngFor="let item of filteredItems" (click)="goToDetail(item)">
+      <ion-label>{{ item.name }}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

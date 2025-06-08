@@ -7,39 +7,80 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="ion-padding">
+<!-- Konten jika data produk sudah tersedia -->
+<ion-content *ngIf="produk; else loading" [fullscreen]="true" class="ion-padding">
 
   <!-- Gambar Produk -->
   <div class="image-container">
-    <img src="https://via.placeholder.com/300.png?text=Produk" alt="Produk" />
+    <img [src]="produk.image_path" alt="Produk" />
   </div>
 
   <!-- Info Produk -->
   <div class="product-info">
-    <h2 class="product-title">Nama Produk Iseng</h2>
-    <p class="product-brand">Brand Iseng</p>
-
-    <ion-item lines="none">
-      <ion-label>Plat Nomor</ion-label>
-      <ion-note slot="end">B 1234 ABC</ion-note>
-    </ion-item>
+    <h2 class="product-title">{{ produk.name }} - {{ produk.serial_number }}</h2>
 
     <ion-item lines="none">
       <ion-label>Status</ion-label>
-      <ion-note slot="end" color="success">Tersedia</ion-note>
+      <ion-note slot="end" [color]="getStatusColor(produk.status)">
+        {{ getStatusLabel(produk.status) }}
+      </ion-note>
     </ion-item>
 
     <ion-item lines="none">
       <ion-label>Harga</ion-label>
-      <ion-note slot="end" color="danger">Rp 123.456</ion-note>
+      <ion-note slot="end">
+        Rp {{ produk.price | number:'1.0-0' }}
+      </ion-note>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-label>Plat Nomor</ion-label>
+      <ion-note slot="end">
+        {{ produk.serial_number }}
+      </ion-note>
     </ion-item>
   </div>
 
 </ion-content>
 
-<!-- Tombol Sewa di Footer -->
-<ion-footer>
+<!-- Spinner saat loading -->
+<ng-template #loading>
+  <ion-content class="ion-padding">
+    <div class="ion-text-center">
+      <ion-spinner name="dots"></ion-spinner>
+      <p>Memuat data produk...</p>
+    </div>
+  </ion-content>
+</ng-template>
+
+<!-- Tombol di footer -->
+<ion-footer *ngIf="produk">
   <ion-toolbar>
-    <ion-button color="primary" class="sewa-button">Sewa Sekarang</ion-button>
+
+    <!-- Tombol Sewa -->
+    <ion-button
+      color="primary"
+      expand="block"
+      [disabled]="!isAvailable(produk.status) || !isLoggedIn || !isVerifiedUser"
+      (click)="sewaSekarang()">
+      {{
+        !isLoggedIn ? 'Login Dulu untuk Sewa'
+        : !isVerifiedUser ? 'Akun Belum Terverifikasi'
+        : 'Sewa Sekarang'
+      }}
+    </ion-button>
+
+
+
+    <!-- Pesan jika belum login -->
+    <div *ngIf="!isLoggedIn" class="ion-text-center" style="margin-top: 8px; color: #f44336;">
+      Silakan login untuk dapat menyewa barang.
+    </div>
+
+    <!-- Pesan jika sudah login tapi belum verifikasi -->
+    <div *ngIf="isLoggedIn && !isVerifiedUser" class="ion-text-center" style="margin-top: 8px; color: #f44336;">
+      Akun Anda belum diverifikasi. Unggah KTP/SIM Anda untuk dapat menyewa.
+    </div>
+
   </ion-toolbar>
 </ion-footer>

@@ -1,2 +1,11 @@
 // For information on how to create your own theme, please see:
 // http://ionicframework.com/docs/theming/
+@media (prefers-color-scheme: dark) {
+  :root {
+    // variable untuk dark mode
+  }
+}
+:root {
+  color-scheme: light;
+}
+

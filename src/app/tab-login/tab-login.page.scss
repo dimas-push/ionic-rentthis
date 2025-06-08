@@ -1,15 +1,79 @@
 .login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-  }
-  
-  ion-card {
-    width: 100%;
-    max-width: 400px;
-    margin: auto;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-    border-radius: 12px;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 0px;
+}
+
+.logo img {
+  width: 214px;
+  margin-bottom: 30px;
+}
+
+.login-title {
+  font-size: 24px;
+  letter-spacing: 0.5%;
+  width: 100%;
+  text-align: left;
+  margin-left: 45px;
+  font-weight: bold;
+}
+
+.form-box {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px; 
+  border-radius: 16px;
+}
+
+.input-item {
+  margin-bottom: 25px;
+  --border-radius: 10px;
+  border-radius: 10px;
+  --background: #dbe4fe;
+}
+
+ion-input {
+  --padding-start: 0px;
+  --padding-end: 0px;
+}
+
+ion-button.btn-login {
+  margin-top: 50px;
+  height: 50px;
+  border-radius: 24px;
+  font-weight: bold;
+  color: #ffffff
+}
+
+.login-link {
+  margin-top: 25px;
+  font-size: 14px;
+  color: var(--ion-text-color-step-400);
+}
+
+.login-link a {
+  color: #3463e9;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.forgot-password {
+  font-size: 14px;
+  margin-top: -12px;
+  margin-bottom: 18px;
+  margin-right: 5px;
+}
+
+.forgot-password a {
+  color: #3463e9;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.login-link a.sign-up {
+  font-weight: bold;
+}
+
